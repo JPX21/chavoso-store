@@ -1,0 +1,8 @@
+# Instale o pnpm globalmente
+npm install -g pnpm
+
+# Depois instale as dependências
+pnpm install
+
+# Execute o projeto
+pnpm dev
