@@ -1,0 +1,11 @@
+# Instale o pnpm globalmente
+npm install -g pnpm
+
+# Depois instale as dependências
+pnpm install
+
+# rode esse comando, apagar components
+npx shadcn@latest init
+
+# Execute o projeto
+pnpm dev
