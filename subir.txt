@@ -1,0 +1,14 @@
+git init
+git add .
+git commit -m "Mensagem de commit"
+
+colocar seus dados 
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+git remote add origin <URL_DO_SEU_REPOSITORIO>      (https://github.com/JPX21/chavoso-store.git)
+
+git branch, para ver a branch atual
+
+git checkout -b (nome da branch) para criar uma
+

@@ -1,0 +1,264 @@
+===========================================
+   CHAVOSO STORE - GUIA DE INSTALAÇÃO
+===========================================
+
+Bem-vindo ao projeto Chavoso Store! Este é um e-commerce completo de keys de jogos da Steam desenvolvido com Next.js 15, React 18 e TypeScript.
+
+===========================================
+REQUISITOS DO SISTEMA
+===========================================
+
+Antes de começar, certifique-se de ter instalado:
+
+1. Node.js (versão 18 ou superior)
+   - Download: https://nodejs.org/
+   - Verifique a instalação: node --version
+
+2. npm (vem com Node.js) ou pnpm
+   - Verifique a instalação: npm --version
+
+3. Git (opcional, para clonar repositórios)
+   - Download: https://git-scm.com/
+
+===========================================
+INSTALAÇÃO E CONFIGURAÇÃO
+===========================================
+
+OPÇÃO 1: Usando npm (Recomendado)
+----------------------------------
+
+1. Extraia o arquivo ZIP do projeto ou clone o repositório
+
+2. Abra o terminal/prompt de comando na pasta do projeto
+
+3. Instale as dependências:
+   npm install
+
+4. Execute o projeto em modo de desenvolvimento:
+   npm run dev
+
+5. Acesse no navegador:
+   http://localhost:3000
+
+
+OPÇÃO 2: Usando o comando shadcn CLI (Mais Fácil)
+--------------------------------------------------
+
+1. Extraia o arquivo ZIP do projeto
+
+2. Abra o terminal na pasta do projeto
+
+3. Execute o comando:
+   npx shadcn@latest init
+
+4. O comando irá detectar automaticamente a configuração e instalar tudo
+
+5. Execute o projeto:
+   npm run dev
+
+6. Acesse no navegador:
+   http://localhost:3000
+
+
+OPÇÃO 3: Usando pnpm
+--------------------
+
+1. Instale o pnpm globalmente:
+   npm install -g pnpm
+
+2. Instale as dependências:
+   pnpm install
+
+3. Execute o projeto:
+   pnpm dev
+
+4. Acesse no navegador:
+   http://localhost:3000
+
+===========================================
+VARIÁVEIS DE AMBIENTE
+===========================================
+
+O projeto já vem configurado com as seguintes variáveis de ambiente:
+
+- RESEND_API_KEY: Para envio de emails (formulário de contato)
+- CONTACT_EMAIL: Email que receberá as mensagens do formulário
+
+Para configurar localmente, crie um arquivo .env.local na raiz do projeto:
+
+RESEND_API_KEY=sua_chave_aqui
+CONTACT_EMAIL=seu-email@exemplo.com
+
+===========================================
+CREDENCIAIS DE ACESSO
+===========================================
+
+CONTA ADMINISTRADOR:
+- Email: admin@admin.com
+- Senha: admin
+
+Funcionalidades do Admin:
+- Gerenciar jogos (criar, editar, excluir)
+- Alterar preços e descrições
+- Deletar reviews de usuários
+- Acesso ao painel administrativo
+
+USUÁRIOS NORMAIS:
+- Podem se cadastrar livremente
+- Podem fazer reviews de jogos
+- Podem gerenciar carrinho de compras
+- Podem editar/deletar suas próprias reviews
+
+===========================================
+FUNCIONALIDADES DO SITE
+===========================================
+
+1. CATÁLOGO DE JOGOS
+   - Carrossel automático de jogos em destaque
+   - Listagem completa de jogos
+   - Filtros e busca
+   - Páginas individuais com detalhes
+
+2. SISTEMA DE CARRINHO
+   - Adicionar/remover jogos
+   - Escolher entre jogo digital ou físico
+   - Cálculo automático de totais
+   - Cupons de desconto (CHAVOSO10, CHAVOSO20, PRIMEIRACOMPRA)
+
+3. PAGAMENTOS
+   - PIX (com QR Code fictício)
+   - Boleto Bancário (geração fictícia)
+   - Cartão de Crédito/Débito (em breve)
+
+4. SISTEMA DE REVIEWS
+   - Avaliação por estrelas (1-5)
+   - Comentários
+   - Edição e exclusão de reviews próprias
+   - Admin pode deletar qualquer review
+
+5. AUTENTICAÇÃO
+   - Login e cadastro de usuários
+   - Área de conta do usuário
+   - Histórico de compras
+   - Gerenciamento de reviews
+
+6. MODO CHAVOSO
+   - Tema Matrix (preto e verde)
+   - Ativável pelo menu do usuário
+
+7. PERGUNTAS FREQUENTES
+   - FAQ completo na página inicial
+   - Accordion interativo
+
+===========================================
+ESTRUTURA DO PROJETO
+===========================================
+
+chavoso-store/
+├── app/                    # Páginas e rotas do Next.js
+│   ├── page.tsx           # Página inicial (redireciona para /jogos)
+│   ├── jogos/             # Catálogo de jogos
+│   ├── carrinho/          # Carrinho de compras
+│   ├── contato/           # Formulário de contato
+│   ├── login/             # Login e cadastro
+│   ├── conta/             # Área do usuário
+│   ├── admin/             # Painel administrativo
+│   └── api/               # API routes (backend)
+├── components/            # Componentes React reutilizáveis
+│   ├── ui/               # Componentes shadcn/ui
+│   ├── navigation.tsx    # Barra de navegação
+│   ├── game-card.tsx     # Card de jogo
+│   └── ...
+├── lib/                   # Utilitários e contextos
+│   ├── cart-context.tsx  # Contexto do carrinho
+│   ├── auth-context.tsx  # Contexto de autenticação
+│   ├── games-context.tsx # Contexto de jogos
+│   ├── theme-context.tsx # Contexto de tema
+│   └── games-data.ts     # Dados dos jogos
+├── public/               # Arquivos estáticos (imagens, logo)
+└── package.json          # Dependências do projeto
+
+===========================================
+COMANDOS ÚTEIS
+===========================================
+
+npm run dev          # Inicia o servidor de desenvolvimento
+npm run build        # Cria build de produção
+npm run start        # Inicia servidor de produção
+npm run lint         # Verifica erros de código
+
+===========================================
+TECNOLOGIAS UTILIZADAS
+===========================================
+
+- Next.js 15 (App Router)
+- React 18
+- TypeScript
+- Tailwind CSS v4
+- shadcn/ui (componentes)
+- Radix UI (primitivos acessíveis)
+- Lucide React (ícones)
+- Resend (envio de emails)
+
+===========================================
+SOLUÇÃO DE PROBLEMAS
+===========================================
+
+ERRO: "pnpm não é reconhecido"
+Solução: Use npm ao invés de pnpm, ou instale o pnpm globalmente
+
+ERRO: "Porta 3000 já está em uso"
+Solução: Feche outros servidores ou use outra porta:
+  npm run dev -- -p 3001
+
+ERRO: "Module not found"
+Solução: Delete node_modules e reinstale:
+  rm -rf node_modules
+  npm install
+
+ERRO: Imagens não carregam
+Solução: Verifique se a pasta public/ existe e contém as imagens
+
+===========================================
+SUPORTE E CONTATO
+===========================================
+
+Para dúvidas ou problemas:
+- Verifique a documentação do Next.js: https://nextjs.org/docs
+- Documentação do shadcn/ui: https://ui.shadcn.com
+- Documentação do Tailwind CSS: https://tailwindcss.com
+
+===========================================
+PRÓXIMOS PASSOS
+===========================================
+
+Após instalar e rodar o projeto:
+
+1. Explore o site navegando pelas páginas
+2. Faça login com a conta admin (admin@admin.com / admin)
+3. Teste o painel administrativo
+4. Adicione jogos ao carrinho
+5. Teste os métodos de pagamento
+6. Experimente o Modo Chavoso
+7. Deixe reviews nos jogos
+
+Divirta-se desenvolvendo! 🎮🔑
+
+
+
+
+
+
+
+
+# Instale o pnpm globalmente
+npm install -g pnpm
+
+# Depois instale as dependências
+pnpm install
+
+# rode esse comando, apagar components
+npx shadcn@latest init
+
+# Execute o projeto
+pnpm dev
