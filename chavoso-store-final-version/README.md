@@ -183,17 +183,23 @@ git clone [URL-DO-REPOSITORIO]
 cd chavoso-store
 \`\`\`
 
-2. **Instale as dependências**
+2. **Instale o pnpm globalmente (versão específica)**
 
 \`\`\`bash
-# Usando o comando shadcn (recomendado)
-npx shadcn@latest init
-
-# Ou manualmente
-npm install
+npm install -g npm@11.6.4
 \`\`\`
 
-3. **Configure as variáveis de ambiente**
+3. **Instale as dependências do projeto**
+
+\`\`\`bash
+# Instale as dependências
+pnpm install
+
+# Rode o comando para configurar o shadcn (apagar components se necessário)
+npx shadcn@latest init
+\`\`\`
+
+4. **Configure as variáveis de ambiente**
 
 Crie um arquivo `.env.local` na raiz do projeto:
 
@@ -202,13 +208,13 @@ RESEND_API_KEY=sua_chave_resend
 CONTACT_EMAIL=seu-email@exemplo.com
 \`\`\`
 
-4. **Execute o projeto**
+5. **Execute o projeto**
 
 \`\`\`bash
-npm run dev
+pnpm dev
 \`\`\`
 
-5. **Acesse no navegador**
+6. **Acesse no navegador**
 
 Abra [http://localhost:3000](http://localhost:3000)
 
@@ -220,49 +226,100 @@ Abra [http://localhost:3000](http://localhost:3000)
 cd backend
 \`\`\`
 
-2. **Crie um ambiente virtual Python**
+2. **Crie e ative o ambiente virtual Python**
 
 \`\`\`bash
-python -m venv venv
+# Crie o ambiente virtual
+python -m venv .venv
 
-# Ative o ambiente virtual
-# Windows
-venv\Scripts\activate
+# Ative o ambiente virtual (Windows)
+.\.venv\Scripts\activate
 
-# Linux/Mac
-source venv/bin/activate
+# Ative o ambiente virtual (Linux/Mac)
+source .venv/bin/activate
 \`\`\`
 
-3. **Instale as dependências**
+3. **Instale as dependências do requirements.txt**
 
 \`\`\`bash
-pip install fastapi uvicorn sqlalchemy pymysql pydantic python-dotenv
+pip install -r requirements.txt
 \`\`\`
 
-4. **Configure o banco de dados**
+4. **Configure o banco de dados MySQL**
 
-Crie um arquivo `.env` na pasta do backend:
+- Certifique-se de que o MySQL está instalado e rodando
+- Edite o arquivo `database.py` e `.env` com o caminho/credenciais do seu MySQL local
+- Crie o banco de dados no MySQL:
+
+\`\`\`sql
+CREATE DATABASE chavoso_store;
+\`\`\`
+
+5. **Configure as variáveis de ambiente**
+
+Crie um arquivo `.env` na pasta backend:
 
 \`\`\`env
-DATABASE_URL=mysql+pymysql://usuario:senha@localhost:3306/chavoso_store
+DATABASE_URL=mysql+pymysql://root:sua_senha@localhost:3306/chavoso_store
 SECRET_KEY=sua_chave_secreta_aqui
 \`\`\`
 
-5. **Execute as migrations**
+6. **Execute as migrations do banco de dados**
 
 \`\`\`bash
 python migrate.py
 \`\`\`
 
-6. **Inicie o servidor**
+7. **Inicie o servidor FastAPI**
 
 \`\`\`bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+python -m uvicorn main:app --reload
 \`\`\`
 
-7. **Acesse a documentação da API**
+8. **Acesse a documentação da API**
 
 Abra [http://localhost:8000/docs](http://localhost:8000/docs) para ver a documentação automática Swagger.
+
+### Solução de Problemas
+
+**Frontend:**
+
+**ERRO:** "pnpm não é reconhecido"  
+**Solução:** Use npm ao invés de pnpm, ou instale o pnpm globalmente
+
+**ERRO:** "Porta 3000 já está em uso"  
+**Solução:** Feche outros servidores ou use outra porta:
+\`\`\`bash
+pnpm dev -- -p 3001
+\`\`\`
+
+**ERRO:** "Module not found"  
+**Solução:** Delete node_modules e reinstale:
+\`\`\`bash
+rm -rf node_modules
+pnpm install
+\`\`\`
+
+**ERRO:** Imagens não carregam  
+**Solução:** Verifique se a pasta public/ existe e contém as imagens
+
+**Backend:**
+
+**ERRO:** "Can't connect to MySQL server"  
+**Solução:** Verifique se o MySQL está rodando e as credenciais no .env estão corretas
+
+**ERRO:** "No module named 'fastapi'"  
+**Solução:** Ative o ambiente virtual e reinstale as dependências:
+\`\`\`bash
+.\.venv\Scripts\activate
+pip install -r requirements.txt
+\`\`\`
+
+**ERRO:** "Table doesn't exist"  
+**Solução:** Execute as migrations novamente:
+\`\`\`bash
+python migrate.py
+\`\`\`
 
 ## 📁 Estrutura do Projeto
 
