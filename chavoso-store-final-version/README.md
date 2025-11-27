@@ -154,8 +154,6 @@ O banco de dados relacional armazena:
 - **Usuários**: Dados cadastrais, credenciais e perfis
 - **Jogos**: Catálogo completo com imagens, preços e metadados
 - **Reviews**: Avaliações e comentários dos usuários
-- **Pedidos**: Histórico de compras e transações
-- **Cupons**: Códigos de desconto e promoções
 
 A conexão é gerenciada via SQLAlchemy com pool de conexões para otimização de performance. As queries são construídas de forma type-safe, prevenindo SQL injection e garantindo integridade dos dados.
 
