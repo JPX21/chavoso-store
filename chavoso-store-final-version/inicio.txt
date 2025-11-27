@@ -1,0 +1,59 @@
+===========================================
+INSTALAÇÃO
+===========================================
+
+# Instale o pnpm globalmente
+npm install -g npm@11.6.4
+
+# Depois instale as dependências
+pnpm install
+
+# rode esse comando, apagar components
+npx shadcn@latest init
+
+# Execute o projeto
+pnpm dev
+
+===========================================
+SOLUÇÃO DE PROBLEMAS
+===========================================
+
+ERRO: "pnpm não é reconhecido"
+Solução: Use npm ao invés de pnpm, ou instale o pnpm globalmente
+
+ERRO: "Porta 3000 já está em uso"
+Solução: Feche outros servidores ou use outra porta:
+  npm run dev -- -p 3001
+
+ERRO: "Module not found"
+Solução: Delete node_modules e reinstale:
+  rm -rf node_modules
+  npm install
+
+ERRO: Imagens não carregam
+Solução: Verifique se a pasta public/ existe e contém as imagens
+
+===========================================
+SUPORTE E CONTATO
+===========================================
+
+Para dúvidas ou problemas:
+- Verifique a documentação do Next.js: https://nextjs.org/docs
+- Documentação do shadcn/ui: https://ui.shadcn.com
+- Documentação do Tailwind CSS: https://tailwindcss.com
+
+===========================================
+PRÓXIMOS PASSOS
+===========================================
+
+Após instalar e rodar o projeto:
+
+1. Explore o site navegando pelas páginas
+2. Faça login com a conta admin (admin@admin.com / admin)
+3. Teste o painel administrativo
+4. Adicione jogos ao carrinho
+5. Teste os métodos de pagamento
+6. Experimente o Modo Chavoso
+7. Deixe reviews nos jogos
+
+Divirta-se! 🎮🔑

@@ -1,0 +1,6 @@
+para ativar o backend:
+entre na pasta backend: cd backend
+ative o venv: .\.venv\Scripts\activate
+baixe os requeriments.txt : pip install -r requirements.txt
+ative o sql e edite o caminho em database.py e .env para o seu computador
+rodar o uvicorn: python -m uvicorn main:app --reload

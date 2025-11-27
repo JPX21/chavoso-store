@@ -1,0 +1,27 @@
+# Ambiente virtual
+.venv/
+
+# Arquivos de sistema do Windows
+Thumbs.db
+Desktop.ini
+
+# Arquivos de sistema do macOS
+.DS_Store
+
+# Configurações do VSCode
+.vscode/
+
+# Arquivos de log
+*.log
+
+# Arquivos de banco de dados local (SQLite)
+*.db
+
+# Arquivo de variáveis de ambiente
+.env
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
