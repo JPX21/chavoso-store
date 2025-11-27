@@ -60,7 +60,9 @@ O objetivo central do Chavoso Store é proporcionar uma experiência completa de
 
 ## 💻 Arquitetura e Tecnologias
 
-O projeto utiliza uma stack moderna e profissional, seguindo as melhores práticas de desenvolvimento.
+O projeto utiliza uma stack moderna e profissional, seguindo as melhores práticas de desenvolvimento full-stack.
+
+### Frontend
 
 | Componente | Tecnologia | Detalhes |
 |------------|-----------|----------|
@@ -75,16 +77,106 @@ O projeto utiliza uma stack moderna e profissional, seguindo as melhores prátic
 | **APIs Externas** | ViaCEP, QR Code Generator | Busca de endereços e geração de QR codes |
 | **Hospedagem** | Vercel | Deploy otimizado com Next.js |
 
+### Backend
+
+| Componente | Tecnologia | Detalhes |
+|------------|-----------|----------|
+| **Linguagem** | Python 3.11+ | Linguagem principal do backend |
+| **Framework** | FastAPI | Framework web moderno e de alta performance |
+| **Servidor** | Uvicorn | Servidor ASGI para aplicações Python assíncronas |
+| **Validação** | Pydantic | Validação de dados e criação de schemas |
+| **CORS** | CORS Middleware | Comunicação segura entre front-end e back-end |
+| **Variáveis de Ambiente** | python-dotenv | Gerenciamento de configurações sensíveis |
+
+### Banco de Dados
+
+| Componente | Tecnologia | Detalhes |
+|------------|-----------|----------|
+| **SGBD** | MySQL 8.0+ | Sistema de gerenciamento de banco de dados relacional |
+| **ORM** | SQLAlchemy | Mapeamento objeto-relacional para Python |
+| **Driver** | PyMySQL | Conector Python puro para MySQL |
+| **Modelagem** | Pydantic Models | Schemas e validação de dados da API |
+
+## 🔧 Arquitetura do Backend
+
+O backend da aplicação foi desenvolvido em Python utilizando o framework FastAPI, proporcionando uma API REST robusta e de alta performance.
+
+### Tecnologias e Bibliotecas
+
+**FastAPI**: Framework web moderno que oferece:
+- Alta performance (comparável a Node.js e Go)
+- Validação automática de dados
+- Documentação automática (Swagger UI)
+- Suporte nativo a async/await
+- Tipagem com Python type hints
+
+**SQLAlchemy**: ORM completo para:
+- Mapeamento de tabelas do banco para classes Python
+- Queries type-safe e expressivas
+- Migrations e versionamento de schema
+- Suporte a transações e relacionamentos
+
+**PyMySQL**: Driver de conexão que:
+- Implementação Python pura (sem dependências C)
+- Compatível com MySQL 5.5+
+- Suporte a prepared statements
+- Conexões seguras via SSL
+
+**Pydantic**: Framework de validação para:
+- Schemas de request/response
+- Validação automática de tipos
+- Serialização/deserialização de dados
+- Geração automática de documentação
+
+**Uvicorn**: Servidor ASGI de alta performance:
+- Suporte a múltiplos workers
+- Hot reload em desenvolvimento
+- Compatível com HTTP/1.1 e HTTP/2
+
+**CORS Middleware**: Configuração de segurança para:
+- Comunicação segura entre domínios diferentes
+- Controle de origens permitidas
+- Gerenciamento de headers e métodos HTTP
+
+### Estrutura da API
+
+A API backend gerencia:
+- Autenticação e autorização de usuários
+- CRUD completo de jogos e produtos
+- Sistema de reviews e avaliações
+- Processamento de pedidos e pagamentos
+- Integração com serviços externos (PIX, Boleto)
+- Validação de CEP e endereços
+
+### Banco de Dados MySQL
+
+O banco de dados relacional armazena:
+- **Usuários**: Dados cadastrais, credenciais e perfis
+- **Jogos**: Catálogo completo com imagens, preços e metadados
+- **Reviews**: Avaliações e comentários dos usuários
+- **Pedidos**: Histórico de compras e transações
+- **Cupons**: Códigos de desconto e promoções
+
+A conexão é gerenciada via SQLAlchemy com pool de conexões para otimização de performance. As queries são construídas de forma type-safe, prevenindo SQL injection e garantindo integridade dos dados.
+
 ## 🚀 Começando
 
 ### Pré-requisitos
 
+**Frontend:**
 - Node.js 18+ instalado
 - npm, yarn ou pnpm
 
+**Backend:**
+- Python 3.11+ instalado
+- MySQL 8.0+ instalado e configurado
+- pip para gerenciamento de pacotes Python
+
 ### Instalação
 
-1. **Clone o repositório ou instale o Zip do GitHub**
+#### Frontend
+
+1. **Clone o repositório ou baixe o ZIP do v0**
 
 \`\`\`bash
 git clone [URL-DO-REPOSITORIO]
@@ -120,16 +212,57 @@ npm run dev
 
 Abra [http://localhost:3000](http://localhost:3000)
 
-### 🔑 Credenciais de Acesso
+#### Backend
 
-**Conta Administrador:**
-- Email: `admin@admin.com`
-- Senha: `admin`
+1. **Navegue até a pasta do backend**
 
-**Cupons de Desconto Disponíveis:**
-- `CHAVOSO10` - 10% de desconto
-- `CHAVOSO20` - 20% de desconto
-- `PRIMEIRACOMPRA` - 15% de desconto
+\`\`\`bash
+cd backend
+\`\`\`
+
+2. **Crie um ambiente virtual Python**
+
+\`\`\`bash
+python -m venv venv
+
+# Ative o ambiente virtual
+# Windows
+venv\Scripts\activate
+
+# Linux/Mac
+source venv/bin/activate
+\`\`\`
+
+3. **Instale as dependências**
+
+\`\`\`bash
+pip install fastapi uvicorn sqlalchemy pymysql pydantic python-dotenv
+\`\`\`
+
+4. **Configure o banco de dados**
+
+Crie um arquivo `.env` na pasta do backend:
+
+\`\`\`env
+DATABASE_URL=mysql+pymysql://usuario:senha@localhost:3306/chavoso_store
+SECRET_KEY=sua_chave_secreta_aqui
+\`\`\`
+
+5. **Execute as migrations**
+
+\`\`\`bash
+python migrate.py
+\`\`\`
+
+6. **Inicie o servidor**
+
+\`\`\`bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+\`\`\`
+
+7. **Acesse a documentação da API**
+
+Abra [http://localhost:8000/docs](http://localhost:8000/docs) para ver a documentação automática Swagger.
 
 ## 📁 Estrutura do Projeto
 
@@ -169,6 +302,13 @@ chavoso-store/
 ├── public/
 │   ├── logo.png            # Logo da loja
 │   └── [imagens-jogos]     # Imagens dos jogos
+├── backend/
+│   ├── main.py             # Arquivo principal da API FastAPI
+│   ├── models.py           # Modelos SQLAlchemy
+│   ├── schemas.py          # Schemas Pydantic
+│   ├── migrations/         # Scripts de migração do banco de dados
+│   ├── .env                # Configurações do backend
+│   └── requirements.txt    # Dependências do backend
 ├── inicio.txt              # Guia de instalação
 └── README.md               # Este arquivo
 \`\`\`
@@ -267,15 +407,11 @@ Este projeto foi desenvolvido para fins educacionais.
 
 ## 👥 Desenvolvedores
 
-Felipe Moraes Toledo \\
-Ian Felipe Pedroso da Silva \\
-João Victor Costa Machado \\
-Wendell Fossen Silva \\
-
+Felipe Moraes Toledo  
+Ian Felipe Pedroso da Silva  
+João Victor Costa Machado  
+Wendell Fossen Silva
 
 ---
 
 **Chavoso Store** - A melhor loja de keys digitais de jogos! 🎮🔑
-\`\`\`
-
-```txt file="" isHidden
